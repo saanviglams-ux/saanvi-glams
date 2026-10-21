@@ -143,7 +143,7 @@
                     Salon Quality Nails, <br class="hidden sm:inline"/>Crafted for Your Unique Style
                 </h2>
                 <p class="text-sm md:text-base text-gray-700 leading-relaxed">
-                    Hand-painted in Mauritius with premium gel & crystals. Order via WhatsApp, Card, or quick MCB Juice.
+                    Hand-painted in Mauritius with premium gel & crystals. Fast order processing with easy MCB Juice payment.
                 </p>
 
                 <!-- Saved Profile Quick Status -->
@@ -343,29 +343,21 @@
                 <span class="text-gray-600">Subtotal:</span>
                 <span id="cart-subtotal" class="font-bold text-lg text-brand-dark">Rs 0</span>
             </div>
-            <p class="text-[11px] text-gray-500 text-center">Delivery fees calculated during confirmation.</p>
+            <p class="text-[11px] text-gray-500 text-center">Fast delivery across Mauritius 🇲🇺</p>
 
             <div class="space-y-2 pt-1">
-                <button onclick="openJuicePaymentModal()" id="checkout-juice-btn" class="w-full py-2.5 bg-gradient-to-r from-pink-600 to-brand-hot text-white text-xs font-bold rounded-2xl shadow-md hover:opacity-95 transition-opacity flex items-center justify-center gap-2">
+                <button onclick="openJuicePaymentModal()" id="checkout-juice-btn" class="w-full py-3 bg-gradient-to-r from-red-600 via-brand-hot to-brand-deep text-white text-xs font-bold rounded-2xl shadow-md hover:opacity-95 transition-opacity flex items-center justify-center gap-2">
                     <i data-lucide="smartphone" class="w-4 h-4"></i>
-                    Pay via MCB Juice
-                </button>
-                <button onclick="openCardPaymentModal()" class="w-full py-2.5 bg-brand-dark text-white text-xs font-bold rounded-2xl shadow-md hover:bg-black transition-colors flex items-center justify-center gap-2">
-                    <i data-lucide="credit-card" class="w-4 h-4"></i>
-                    Pay via Credit / Debit Card
-                </button>
-                <button onclick="triggerDirectWhatsAppCheckout()" id="checkout-wa-btn" class="w-full py-2.5 bg-emerald-600 text-white text-xs font-bold rounded-2xl shadow-md hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    Direct WhatsApp Order
+                    Pay via MCB Juice & Checkout
                 </button>
             </div>
         </div>
     </div>
 
 
-    <!-- 4. MCB JUICE PAYMENT POPUP MODAL -->
+    <!-- 4. MCB JUICE PAYMENT MODAL (ONLY PAYMENT METHOD) -->
     <div id="juice-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-        <div class="glass-modal rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+        <div class="glass-modal rounded-3xl max-w-md w-full p-6 relative shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar">
             <button onclick="closeJuiceModal()" class="absolute top-4 right-4 p-2 rounded-full bg-pink-100 hover:bg-pink-200 text-brand-dark">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -376,7 +368,7 @@
                         MCB
                     </div>
                     <h3 class="font-heading font-bold text-xl text-brand-dark">MCB Juice Payment</h3>
-                    <p class="text-xs text-gray-600">Transfer payment via your MCB Juice App</p>
+                    <p class="text-xs text-gray-600">Transfer payment via your MCB Juice Mobile App</p>
                 </div>
 
                 <div class="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-2xl border border-red-200 space-y-2 text-xs">
@@ -399,80 +391,48 @@
                     </div>
                 </div>
 
+                <!-- Step-by-Step Payment Instructions -->
+                <div class="p-3 bg-amber-50 border border-amber-200 rounded-2xl text-[11px] text-amber-900 space-y-1">
+                    <p class="font-bold flex items-center gap-1">
+                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-600"></i> Important Step Before Order Processing:
+                    </p>
+                    <p>1. Transfer the total amount via MCB Juice to <strong><span class="display-juice-number-inline">5821 9876</span></strong>.</p>
+                    <p>2. Fill in your details below and tap <strong>Verify & Submit via WhatsApp</strong>.</p>
+                    <p>3. <strong>Attach a screenshot of your Juice receipt</strong> in the WhatsApp chat so we can verify and start crafting your order!</p>
+                </div>
+
                 <div class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1">Your Full Name *</label>
                         <input type="text" id="juice-customer-name" placeholder="e.g. Ananya Sewraj" class="w-full px-3 py-2 rounded-xl text-xs bg-white border border-pink-200 focus:outline-none focus:border-brand-hot">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-700 mb-1">Juice Reference # (FT...)*</label>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Your Contact Phone Number *</label>
+                        <input type="text" id="juice-customer-phone" placeholder="e.g. 51234567" class="w-full px-3 py-2 rounded-xl text-xs bg-white border border-pink-200 focus:outline-none focus:border-brand-hot">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Juice Reference # / Transaction ID *</label>
                         <input type="text" id="juice-ref-number" placeholder="e.g. FT230918XXXXX" class="w-full px-3 py-2 rounded-xl text-xs bg-white border border-pink-200 focus:outline-none focus:border-brand-hot uppercase">
                     </div>
                 </div>
 
                 <button onclick="submitJuiceOrder()" class="w-full py-3 bg-red-600 text-white text-xs font-bold rounded-2xl shadow-md hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
                     <i data-lucide="send" class="w-4 h-4"></i>
-                    Verify & Send Order via WhatsApp
+                    Verify & Submit via WhatsApp
                 </button>
             </div>
         </div>
     </div>
 
 
-    <!-- 5. DIRECT CREDIT / DEBIT CARD MODAL -->
-    <div id="card-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-        <div class="glass-modal rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="closeCardModal()" class="absolute top-4 right-4 p-2 rounded-full bg-pink-100 hover:bg-pink-200 text-brand-dark">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-            <div class="space-y-4">
-                <div class="text-center space-y-1">
-                    <div class="w-12 h-12 bg-pink-100 text-brand-hot rounded-2xl flex items-center justify-center mx-auto mb-2">
-                        <i data-lucide="credit-card" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-heading font-bold text-xl text-brand-dark">Direct Card Checkout</h3>
-                    <p class="text-xs text-gray-600">Secure online payment gateway</p>
-                </div>
-
-                <div class="space-y-3 text-xs">
-                    <div>
-                        <label class="block font-semibold text-gray-700 mb-1">Cardholder Name *</label>
-                        <input type="text" id="card-name" placeholder="Name on card" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 focus:outline-none focus:border-brand-hot">
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-700 mb-1">Card Number *</label>
-                        <input type="text" id="card-num" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 focus:outline-none focus:border-brand-hot">
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block font-semibold text-gray-700 mb-1">Expiry Date *</label>
-                            <input type="text" id="card-exp" placeholder="MM/YY" maxlength="5" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 focus:outline-none focus:border-brand-hot">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-gray-700 mb-1">CVV / CVC *</label>
-                            <input type="password" id="card-cvv" placeholder="123" maxlength="4" class="w-full px-3 py-2 rounded-xl bg-white border border-pink-200 focus:outline-none focus:border-brand-hot">
-                        </div>
-                    </div>
-                </div>
-
-                <button onclick="processCardPayment()" class="w-full py-3 bg-brand-hot text-white text-xs font-bold rounded-2xl shadow-md hover:bg-brand-deep transition-colors flex items-center justify-center gap-2">
-                    <i data-lucide="lock" class="w-4 h-4"></i>
-                    Pay & Confirm Order
-                </button>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- 6. ENHANCED OWNER LOGIN & DASHBOARD MODAL -->
+    <!-- 5. OWNER LOGIN & DASHBOARD MODAL -->
     <div id="admin-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/50 backdrop-blur-md">
         <div class="glass-modal rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl p-6 relative">
             <button onclick="closeAdminModal()" class="absolute top-4 right-4 p-2 rounded-full bg-pink-100 hover:bg-pink-200 text-brand-dark">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
-            <!-- Case-Insensitive Login View -->
+            <!-- Login View -->
             <div id="admin-login-view" class="space-y-4 py-6 text-center max-w-xs mx-auto">
                 <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto text-brand-hot">
                     <i data-lucide="lock" class="w-6 h-6"></i>
@@ -487,7 +447,7 @@
                 </button>
             </div>
 
-            <!-- Admin Dashboard Main View -->
+            <!-- Admin Dashboard View -->
             <div id="admin-dashboard-view" class="hidden space-y-6">
                 <div class="flex items-center justify-between border-b border-pink-200 pb-4">
                     <div class="flex items-center gap-2">
@@ -514,7 +474,7 @@
                     </div>
                 </div>
 
-                <!-- Store Settings Form with Auto-Formatting -->
+                <!-- Store Settings Form -->
                 <div class="bg-white/70 p-4 rounded-2xl border border-pink-200 space-y-3">
                     <h4 class="font-bold text-xs text-brand-dark uppercase tracking-wider">Store Contact & Payment Settings</h4>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -528,11 +488,11 @@
                         </div>
                     </div>
                     <button onclick="saveStoreSettings()" class="px-4 py-1.5 bg-brand-hot text-white text-xs font-bold rounded-xl hover:bg-brand-deep transition-colors">
-                        Save Phone Numbers
+                        Save Contact Numbers
                     </button>
                 </div>
 
-                <!-- Add New Product Form with Compression -->
+                <!-- Add New Product Form -->
                 <div class="bg-white/70 p-4 rounded-2xl border border-pink-200 space-y-3">
                     <h4 class="font-bold text-xs text-brand-dark uppercase tracking-wider">Add New Nail Design</h4>
                     <form id="add-product-form" onsubmit="handleAddNewProduct(event)" class="space-y-3">
@@ -573,7 +533,7 @@
                     </form>
                 </div>
 
-                <!-- Product Inventory Manager with Confirmation -->
+                <!-- Product Inventory Manager -->
                 <div class="bg-white/70 p-4 rounded-2xl border border-pink-200 space-y-3">
                     <h4 class="font-bold text-xs text-brand-dark uppercase tracking-wider">Product Inventory Manager</h4>
                     <div id="admin-product-list" class="space-y-2 max-h-60 overflow-y-auto custom-scrollbar">
@@ -752,6 +712,12 @@
             updateCartUI();
         }
 
+        function updateJuiceDisplayNumbers() {
+            document.getElementById('display-juice-number').innerText = storeSettings.juiceNumber;
+            const inlines = document.querySelectorAll('.display-juice-number-inline');
+            inlines.forEach(el => el.innerText = storeSettings.juiceNumber);
+        }
+
         function saveStoreSettings() {
             let waVal = document.getElementById('admin-wa-num').value.trim();
             const juiceVal = document.getElementById('admin-juice-num').value.trim();
@@ -766,11 +732,10 @@
             if(juiceVal) storeSettings.juiceNumber = juiceVal;
 
             localStorage.setItem('saanvi_settings', JSON.stringify(storeSettings));
-            document.getElementById('display-juice-number').innerText = storeSettings.juiceNumber;
-            showToast('Store settings updated & formatted!');
+            updateJuiceDisplayNumbers();
+            showToast('Store settings updated!');
         }
 
-        // Inventory Backup and Restore Functions
         function exportCatalogJSON() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(products, null, 2));
             const downloadAnchor = document.createElement('a');
@@ -1147,7 +1112,7 @@
             saveCartToStorage();
         }
 
-        // MCB Juice Flow
+        // MCB JUICE PAYMENT ONLY
         function openJuicePaymentModal() {
             if(cart.length === 0) {
                 showToast('Please add items to your bag first!');
@@ -1155,7 +1120,7 @@
             }
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             document.getElementById('juice-modal-amount').innerText = `Rs ${subtotal.toLocaleString()}`;
-            document.getElementById('display-juice-number').innerText = storeSettings.juiceNumber;
+            updateJuiceDisplayNumbers();
             document.getElementById('juice-modal').classList.remove('hidden');
         }
 
@@ -1170,20 +1135,22 @@
 
         function submitJuiceOrder() {
             const name = document.getElementById('juice-customer-name').value.trim();
+            const phone = document.getElementById('juice-customer-phone').value.trim();
             const ref = document.getElementById('juice-ref-number').value.trim();
 
-            if (!name || !ref) {
-                showToast('Please fill in your name and Juice reference #');
+            if (!name || !phone || !ref) {
+                showToast('Please fill in your name, phone number & Juice reference #');
                 return;
             }
 
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-            let msg = `✨ *NEW SAANVI GLAMS ORDER (MCB JUICE PAID)* ✨\n\n`;
-            msg += `*Customer:* ${name}\n`;
-            msg += `*Juice Reference:* ${ref}\n`;
-            msg += `*Total Amount:* Rs ${subtotal.toLocaleString()}\n\n`;
-            msg += `*ORDER ITEMS:*\n`;
+            let msg = `✨ *NEW SAANVI GLAMS ORDER (MCB JUICE PAYMENT)* ✨\n\n`;
+            msg += `👤 *Customer Name:* ${name}\n`;
+            msg += `📞 *Customer Phone:* ${phone}\n`;
+            msg += `🧾 *Juice Ref #:* ${ref}\n`;
+            msg += `💰 *Total Paid:* Rs ${subtotal.toLocaleString()}\n\n`;
+            msg += `🛍️ *ORDERED ITEMS:*\n`;
 
             cart.forEach((item, index) => {
                 msg += `${index + 1}. *${item.title}*\n`;
@@ -1192,7 +1159,7 @@
                 msg += `   • Quantity: ${item.quantity} (Rs ${item.price * item.quantity})\n`;
             });
 
-            msg += `\n💖 Please confirm receipt of payment and order details!`;
+            msg += `\n📌 *Receipt Screenshot Attached Below:* (Please attach your screenshot to this message)`;
 
             const encodedMsg = encodeURIComponent(msg);
             const waUrl = `https://wa.me/${storeSettings.whatsappNumber}?text=${encodedMsg}`;
@@ -1203,74 +1170,9 @@
             cart = [];
             saveCartToStorage();
             document.getElementById('juice-customer-name').value = '';
+            document.getElementById('juice-customer-phone').value = '';
             document.getElementById('juice-ref-number').value = '';
             closeJuiceModal();
-            toggleCartDrawer(false);
-        }
-
-        // Direct Card Payment Flow
-        function openCardPaymentModal() {
-            if(cart.length === 0) {
-                showToast('Please add items to your bag first!');
-                return;
-            }
-            document.getElementById('card-modal').classList.remove('hidden');
-        }
-
-        function closeCardModal() {
-            document.getElementById('card-modal').classList.add('hidden');
-        }
-
-        function processCardPayment() {
-            const name = document.getElementById('card-name').value.trim();
-            const num = document.getElementById('card-num').value.trim();
-            const exp = document.getElementById('card-exp').value.trim();
-            const cvv = document.getElementById('card-cvv').value.trim();
-
-            if(!name || !num || !exp || !cvv) {
-                showToast('Please complete all card details.');
-                return;
-            }
-
-            showToast('Processing payment...');
-            setTimeout(() => {
-                cart = [];
-                saveCartToStorage();
-                closeCardModal();
-                toggleCartDrawer(false);
-                showToast('Payment successful! Your order has been placed.');
-            }, 1500);
-        }
-
-        function triggerDirectWhatsAppCheckout() {
-            if(cart.length === 0) {
-                showToast('Please add items to your bag first!');
-                return;
-            }
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-            let msg = `✨ *NEW SAANVI GLAMS DIRECT ORDER* ✨\n\n`;
-            msg += `*ORDER ITEMS:*\n`;
-
-            cart.forEach((item, index) => {
-                msg += `${index + 1}. *${item.title}*\n`;
-                msg += `   • Shape/Length: ${item.shape}\n`;
-                msg += `   • Size: ${item.size}\n`;
-                msg += `   • Quantity: ${item.quantity} (Rs ${item.price * item.quantity})\n`;
-            });
-
-            msg += `\n*Total Amount:* Rs ${subtotal.toLocaleString()}\n\n`;
-            msg += `💖 Hi! I would like to place this order and arrange delivery in Mauritius.`;
-
-            const encodedMsg = encodeURIComponent(msg);
-            const waUrl = `https://wa.me/${storeSettings.whatsappNumber}?text=${encodedMsg}`;
-
-            const waWindow = window.open(waUrl, '_blank');
-            if (!waWindow) { window.location.href = waUrl; }
-
-            cart = [];
-            saveCartToStorage();
             toggleCartDrawer(false);
         }
 
@@ -1303,7 +1205,6 @@
             document.getElementById('admin-modal').classList.add('hidden');
         }
 
-        // Case-Insensitive Password Verification
         function verifyAdminPassword() {
             const input = document.getElementById('admin-pass-input').value.trim().toUpperCase();
             if (input === 'SAANVI') {
@@ -1401,7 +1302,6 @@
             lucide.createIcons();
         }
 
-        // Added Deletion Safeguard
         function deleteProduct(productId) {
             const targetProd = products.find(p => p.id === productId);
             const confirmDel = confirm(`Are you sure you want to delete "${targetProd ? targetProd.title : 'this design'}"?`);
