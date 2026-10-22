@@ -229,7 +229,7 @@
     </div>
 
 
-    <!-- 2. INTERACTIVE SIZING GUIDE MODAL WITH PROFILE SAVER -->
+    <!-- 2. INTERACTIVE SIZING GUIDE MODAL WITH PROFILE SAVER & COIN INSTRUCTION -->
     <div id="sizing-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity">
         <div class="glass-modal rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl p-6 relative">
             <button onclick="closeSizingGuideModal()" class="absolute top-4 right-4 p-2 rounded-full bg-pink-100 hover:bg-pink-200 text-brand-dark transition-colors">
@@ -294,6 +294,21 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Coin Sizing Help Box -->
+                <div class="p-3.5 rounded-2xl bg-gradient-to-r from-pink-50 to-rose-50 border border-pink-300 space-y-2">
+                    <div class="flex items-center gap-2 text-brand-hot font-bold text-xs">
+                        <i data-lucide="camera" class="w-4 h-4"></i>
+                        <span>Having trouble measuring your nails?</span>
+                    </div>
+                    <p class="text-[11px] text-gray-700 leading-relaxed">
+                        Don't worry! Place a coin (e.g., Rs 5 or Rs 10) flat beside your hand on a table, take a clear picture, and send it directly to us on WhatsApp. We will calculate your exact custom sizes for you!
+                    </p>
+                    <button onclick="sendCoinPhotoWhatsApp()" class="w-full py-2 bg-emerald-600 text-white font-bold text-xs rounded-xl hover:bg-emerald-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Send Coin Photo on WhatsApp
+                    </button>
                 </div>
 
                 <div class="p-3.5 rounded-2xl bg-white border border-pink-200 space-y-2">
@@ -705,6 +720,13 @@
             checkUserProfileBanner();
             showToast('Size profile saved to your browser!');
             closeSizingGuideModal();
+        }
+
+        function sendCoinPhotoWhatsApp() {
+            const msg = `Hi Saanvi Glams! ✨\nI'm having trouble measuring my nail sizes. I am attaching a picture of my hand with a coin beside it for custom sizing help!`;
+            const encodedMsg = encodeURIComponent(msg);
+            const waUrl = `https://wa.me/${storeSettings.whatsappNumber}?text=${encodedMsg}`;
+            window.open(waUrl, '_blank');
         }
 
         function saveProductsToStorage() {
