@@ -100,17 +100,9 @@
     <!-- Sticky Header Navbar -->
     <header class="sticky top-0 z-30 glass-nav transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Brand Logo Integration -->
             <div id="brand-logo-btn" class="cursor-pointer flex items-center gap-2.5 select-none group">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-hot to-pink-300 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-                    <i data-lucide="gem" class="w-5 h-5"></i>
-                </div>
-                <div>
-                    <h1 class="font-heading text-xl md:text-2xl font-bold tracking-tight text-brand-dark flex items-center gap-1">
-                        Saanvi Glams
-                        <span class="inline-block w-2 h-2 rounded-full bg-brand-hot"></span>
-                    </h1>
-                    <p class="text-[10px] text-pink-700 font-medium tracking-widest uppercase">Handmade Press-On Nails</p>
-                </div>
+                <img src="32087.jpg" alt="Saanvi Glams Logo" class="h-11 md:h-12 w-auto rounded-xl object-cover shadow-sm group-hover:scale-105 transition-transform border border-pink-200">
             </div>
 
             <div class="flex items-center gap-2.5">
@@ -631,7 +623,6 @@
         let cart = [];
         let activeCategory = 'All';
         
-        // Updated default settings to use your correct number (23059134519)
         let storeSettings = {
             whatsappNumber: '23059134519',
             juiceNumber: '5913 4519'
@@ -726,9 +717,9 @@
             const juiceVal = document.getElementById('admin-juice-num').value.trim();
 
             if(waVal) {
-                waVal = waVal.replace(/\D/g, ''); // Remove non-digits
+                waVal = waVal.replace(/\D/g, ''); 
                 if(!waVal.startsWith('230') && waVal.length === 8) {
-                    waVal = '230' + waVal; // Auto format Mauritius country code
+                    waVal = '230' + waVal; 
                 }
                 storeSettings.whatsappNumber = waVal;
             }
@@ -855,7 +846,7 @@
                                 <span class="text-[10px] text-gray-500 uppercase font-medium">Price</span>
                                 <p class="font-bold text-sm text-brand-hot">Rs ${p.price}</p>
                             </div>
-                            <button onclick="openProductModal('${p.id}')" class="px-3 py-1.5 bg-brand-soft text-brand-hot hover:bg-brand-hot hover:text-white text-xs font-semibold rounded-xl transition-all border border-pink-200 flex items-center gap-1 shadow-sm">
+                            <button onclick="openProductModal('${p.id}')" class="px-3 py-1.5 bg-brand-soft text-brand-hot hover:bg-brand-hot hover:text-white text-xs font-semibold rounded-transition-all border border-pink-200 flex items-center gap-1 shadow-sm">
                                 <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
                                 Custom
                             </button>
@@ -985,7 +976,7 @@
         function zoomImage(src) {
             if(!src) return;
             const w = window.open("");
-            w.document.write(`<body style="margin:0;background:#000;display:flex;justify-center:center;align-items:center;height:100vh;"><img src="${src}" style="max-width:100%;max-height:100%;margin:auto;"/></body>`);
+            w.document.write(`<body style="margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;"><img src="${src}" style="max-width:100%;max-height:100%;margin:auto;"/></body>`);
         }
 
         function closeProductModal() {
