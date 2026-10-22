@@ -101,7 +101,7 @@
     <header class="sticky top-0 z-30 glass-nav transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <!-- Brand Logo Integration -->
-            <div id="brand-logo-btn" class="cursor-pointer flex items-center gap-2.5 select-none group">
+            <div id="brand-logo-btn" class="cursor-pointer flex items-center gap-2.5 select-none group" title="Tap to view logo | Triple-tap for Owner Portal">
                 <img src="32087.jpg" alt="Saanvi Glams Logo" class="h-11 md:h-12 w-auto rounded-xl object-cover shadow-sm group-hover:scale-105 transition-transform border border-pink-200">
             </div>
 
@@ -197,6 +197,24 @@
 
 
     <!-- ==================== MODALS & DRAWERS ==================== -->
+
+    <!-- LOGO LARGE PREVIEW LIGHTBOX MODAL -->
+    <div id="logo-preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-md transition-opacity" onclick="closeLogoPreviewModal()">
+        <div class="glass-modal rounded-3xl max-w-xs w-full p-5 relative shadow-2xl border border-white text-center space-y-3" onclick="event.stopPropagation()">
+            <button onclick="closeLogoPreviewModal()" class="absolute top-3 right-3 p-1.5 rounded-full bg-pink-100 hover:bg-pink-200 text-brand-dark transition-colors">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            
+            <h4 class="font-heading font-bold text-lg text-brand-dark pt-1">Saanvi Glams Logo</h4>
+            <div class="overflow-hidden rounded-2xl border-2 border-pink-300 shadow-md">
+                <img src="32087.jpg" alt="Saanvi Glams Logo Large" class="w-full h-auto object-cover">
+            </div>
+            <button onclick="closeLogoPreviewModal()" class="w-full py-2 bg-brand-soft text-brand-hot font-bold text-xs rounded-xl border border-pink-200 hover:bg-brand-hot hover:text-white transition-colors">
+                Close Preview
+            </button>
+        </div>
+    </div>
+
 
     <!-- 1. PRODUCT CUSTOMIZATION & GALLERY LIGHTBOX MODAL -->
     <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity">
@@ -983,6 +1001,14 @@
             document.getElementById('product-modal').classList.add('hidden');
         }
 
+        function openLogoPreviewModal() {
+            document.getElementById('logo-preview-modal').classList.remove('hidden');
+        }
+
+        function closeLogoPreviewModal() {
+            document.getElementById('logo-preview-modal').classList.add('hidden');
+        }
+
         function adjustModalQty(delta) {
             const qtyElem = document.getElementById('modal-qty');
             let current = parseInt(qtyElem.innerText) || 1;
@@ -1170,21 +1196,24 @@
             toggleCartDrawer(false);
         }
 
-        // Owner Dashboard Logic
+        // Owner Dashboard & Logo Click Logic
         function setupLogoSecretTrigger() {
             const logo = document.getElementById('brand-logo-btn');
             logo.addEventListener('click', () => {
                 logoClickCount++;
+                
                 if (logoClickTimer) clearTimeout(logoClickTimer);
 
-                if (logoClickCount === 3) {
+                logoClickTimer = setTimeout(() => {
+                    if (logoClickCount === 1) {
+                        // Single tap: open logo modal
+                        openLogoPreviewModal();
+                    } else if (logoClickCount >= 3) {
+                        // Triple tap: trigger admin prompt
+                        triggerAdminModalPrompt();
+                    }
                     logoClickCount = 0;
-                    triggerAdminModalPrompt();
-                } else {
-                    logoClickTimer = setTimeout(() => {
-                        logoClickCount = 0;
-                    }, 1000);
-                }
+                }, 350);
             });
         }
 
